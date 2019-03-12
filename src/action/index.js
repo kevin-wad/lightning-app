@@ -87,12 +87,13 @@ when(
  * lnd node all balances, channels and transactions are fetched.
  */
 when(
-  () => store.lndReady,
+  () => store.lndReady && store.autopilotReady,
   () => {
     wallet.getNewAddress();
     wallet.pollBalances();
     wallet.pollExchangeRate();
     channel.pollChannels();
+    channel.pollBosScores();
     transaction.update();
     transaction.subscribeTransactions();
     transaction.subscribeInvoices();
