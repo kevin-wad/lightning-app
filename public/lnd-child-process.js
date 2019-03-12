@@ -76,10 +76,11 @@ module.exports.startLndProcess = async function({
     ]);
   } else {
     args = args.concat([
-      '--autopilot.active',
       '--autopilot.private',
       '--autopilot.minconfs=0',
       '--autopilot.allocation=0.95',
+      '--autopilot.heuristic=externalscore:0.7',
+      '--autopilot.heuristic=preferential:0.3',
     ]);
   }
   // set default production settings if no custom flags
